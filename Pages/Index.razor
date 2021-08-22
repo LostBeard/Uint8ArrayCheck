@@ -1,0 +1,17 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.JSInterop
+
+@code{
+    [Inject]
+    IJSRuntime js { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            js.InvokeVoidAsync("uint8arrayTest", new byte[1000]);
+        }
+    }
+}
